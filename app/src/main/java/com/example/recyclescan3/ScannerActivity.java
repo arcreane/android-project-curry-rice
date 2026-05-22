@@ -27,6 +27,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
+
+
 public class ScannerActivity extends AppCompatActivity {
 
     private static final String TAG = "ScannerActivity";
@@ -38,6 +40,7 @@ public class ScannerActivity extends AppCompatActivity {
 
     private ImageCapture imageCapture;
     private ProcessCameraProvider cameraProvider;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class ScannerActivity extends AppCompatActivity {
 
         captureButton.setOnClickListener(v -> captureImage());
     }
+
 
     private void startCamera() {
         ListenableFuture<ProcessCameraProvider> future =
@@ -90,6 +94,7 @@ public class ScannerActivity extends AppCompatActivity {
         }, ContextCompat.getMainExecutor(this));
     }
 
+
     private void captureImage() {
         if (imageCapture == null) {
             Toast.makeText(this, "Camera not ready", Toast.LENGTH_SHORT).show();
@@ -110,16 +115,15 @@ public class ScannerActivity extends AppCompatActivity {
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults results) {
                         statusText.setText("Captured — ready to classify");
                         Log.d(TAG, "Saved: " + outputFile.getAbsolutePath());
-                        // TODO: pass to ResultActivity for waste classification
                     }
 
                     @Override
                     public void onError(@NonNull ImageCaptureException e) {
                         Log.e(TAG, "Capture failed", e);
                         statusText.setText("Capture failed");
-                    }
-                });
+                    }});
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
@@ -133,6 +137,7 @@ public class ScannerActivity extends AppCompatActivity {
             statusText.setText("Camera permission denied");
         }
     }
+
 
     @Override
     protected void onDestroy() {
