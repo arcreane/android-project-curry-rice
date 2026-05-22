@@ -47,11 +47,11 @@ public class ScannerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
 
-        previewView = findViewById(R.id.preview_view);
+        previewView = findViewById(R.id.preview_view); // inflates layout + binds views
         captureButton = findViewById(R.id.btn_capture);
         statusText = findViewById(R.id.status_text);
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) // checks camera permission
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.CAMERA},
@@ -67,7 +67,7 @@ public class ScannerActivity extends AppCompatActivity {
     private void startCamera() {
         ListenableFuture<ProcessCameraProvider> future =
                 ProcessCameraProvider.getInstance(this);
-
+        // initializes CameraX: creates Preview and ImageCapture
         future.addListener(() -> {
             try {
                 cameraProvider = future.get();
@@ -105,7 +105,7 @@ public class ScannerActivity extends AppCompatActivity {
         if (!outputDir.exists()) outputDir.mkdirs();
 
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
-        File outputFile = new File(outputDir, "scan_" + timestamp + ".jpg");
+        File outputFile = new File(outputDir, "scan_" + timestamp + ".jpg"); // takes a photo and saves it to cache/scans/scan_TIMESTAMP.jpg
 
         imageCapture.takePicture(
                 new ImageCapture.OutputFileOptions.Builder(outputFile).build(),
@@ -129,6 +129,7 @@ public class ScannerActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // system callback after user responds to the camera permission
         if (requestCode == PERMISSION_REQUEST_CODE
                 && grantResults.length > 0
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -142,6 +143,6 @@ public class ScannerActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (cameraProvider != null) cameraProvider.unbindAll();
+        if (cameraProvider != null) cameraProvider.unbindAll(); // releases the camera when activity is destroyed.
     }
 }

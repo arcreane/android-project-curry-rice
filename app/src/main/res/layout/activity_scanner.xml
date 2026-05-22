@@ -4,11 +4,15 @@
     android:layout_height="match_parent"
     android:background="@android:color/black">
 
+
+    <!-- full screen camera-->
     <androidx.camera.view.PreviewView
         android:id="@+id/preview_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+
+    <!-- showing current camera state -->
     <TextView
         android:id="@+id/status_text"
         android:layout_width="match_parent"
@@ -20,6 +24,8 @@
         android:textColor="@android:color/white"
         android:textSize="14sp" />
 
+
+    <!-- button that triggers captureImage() on click -->
     <Button
         android:id="@+id/btn_capture"
         android:layout_width="wrap_content"
