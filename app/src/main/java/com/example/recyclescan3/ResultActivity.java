@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.recyclescan3.model.Category;
 
 /**
  * ResultActivity — shown after a product has been identified.
@@ -85,6 +87,9 @@ public class ResultActivity extends AppCompatActivity {
         TextView tvCategoryLabel = findViewById(R.id.tv_category_label);
         tvCategoryEmoji.setText(product.getCategory().getEmoji());
         tvCategoryLabel.setText(product.getCategory().getLabel());
+        LinearLayout categoryCard = findViewById(R.id.layout_category_card);
+        categoryCard.setBackgroundColor(getCategoryColor(product.getCategory()));
+
 
         // Apply the per-category style to the card so themes drive colours (R6).
         // The card view itself uses a style attribute; we switch the background
@@ -155,4 +160,24 @@ public class ResultActivity extends AppCompatActivity {
         shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
         startActivity(Intent.createChooser(shareIntent, getString(R.string.share_chooser_title)));
     }
+
+    /**
+     * Get the color for a given waste category (R6 — per-category themes)
+     * Each category has a distinct color for visual feedback
+     */
+    private int getCategoryColor(WasteCategory category) {
+        switch(category) {
+            case RECYCLABLE:
+                return getResources().getColor(R.color.category_recyclable, getTheme());
+            case COMPOST:
+                return getResources().getColor(R.color.category_compost, getTheme());
+            case GENERAL:
+                return getResources().getColor(R.color.category_general, getTheme());
+            case HAZARDOUS:
+                return getResources().getColor(R.color.category_hazardous, getTheme());
+            default:
+                return getResources().getColor(R.color.category_general, getTheme());
+        }
+    }
+
 }
