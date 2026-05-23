@@ -90,7 +90,6 @@ public class MenuActivity extends AppCompatActivity {
         regionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, android.view.View view, int position, long id) {
-                // Skip the first automatic selection
                 if (isInitialLoad) {
                     isInitialLoad = false;
                     return;
@@ -131,7 +130,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private void displayRulesForRegion(Region region) {
         StringBuilder rulesText = new StringBuilder();
-        rulesText.append("📍 ").append(region.displayName).append("\n\n");
+        rulesText.append("-> ").append(region.displayName).append("\n\n");
         rulesText.append("Waste Sorting Rules:\n");
         rulesText.append("━━━━━━━━━━━━━━━━━━━━━━━━\n\n");
 
@@ -153,11 +152,10 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent;
         switch (activityName) {
             case "Scanner":
-                // TODO: Create and implement ScannerActivity
                 Toast.makeText(this, "Scanner Activity not yet implemented", Toast.LENGTH_SHORT).show();
                 break;
             case "History":
-                // TODO: Create and implement HistoryActivity
+
                 Toast.makeText(this, "History Activity not yet implemented", Toast.LENGTH_SHORT).show();
                 break;
             case "Settings":
