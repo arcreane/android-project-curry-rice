@@ -1,4 +1,5 @@
-package com.curryrice.recyclscan;
+package com.example.recyclescan3;
+import com.example.recyclescan3.WasteCategory;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -1,4 +1,4 @@
-package com.curryrice.recyclscan;
+package com.example.recyclescan3;
 
 /**
  * The four bin categories supported by RecycleScan.

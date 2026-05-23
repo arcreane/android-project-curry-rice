@@ -1,4 +1,4 @@
-package com.curryrice.recyclscan;
+package com.example.recyclescan3;
 
 import android.content.Intent;
 import android.os.Bundle;
