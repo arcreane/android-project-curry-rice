@@ -103,7 +103,7 @@ public class HistoryActivity extends AppCompatActivity {
                     selection,
                     selectionArgs,
                     HistoryScanContract.COL_SCANNED_AT + " DESC"
-            );
+            ); // History Activity crashes because content provider is not implemented yet
 
             List<HistoryItem> items = new ArrayList<>();
             if (cursor != null) {

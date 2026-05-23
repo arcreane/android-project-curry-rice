@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.main).setOnClickListener(v ->
-                startActivity(new Intent(this, ScannerActivity.class))
+                startActivity(new Intent(this, MenuActivity.class))
         );
     }
 }

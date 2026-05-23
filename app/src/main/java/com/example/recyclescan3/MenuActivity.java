@@ -152,15 +152,15 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent;
         switch (activityName) {
             case "Scanner":
-                Toast.makeText(this, "Scanner Activity not yet implemented", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, ScannerActivity.class));
                 break;
-            case "History":
 
-                Toast.makeText(this, "History Activity not yet implemented", Toast.LENGTH_SHORT).show();
+            case "History":
+                startActivity(new Intent(this, HistoryActivity.class));
                 break;
+
             case "Settings":
-                intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(this, SettingsActivity.class));
                 break;
         }
     }
