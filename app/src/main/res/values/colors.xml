@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="category_recyclable">#FF4CAF50</color>
+    <color name="category_compost">#FF8BC34A</color>
+    <color name="category_general">#FF9E9E9E</color>
+    <color name="category_hazardous">#FFF44336</color>
 </resources>

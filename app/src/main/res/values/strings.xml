@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">RecycleScan3</string>
+    <string name="placeholder_product_name">Product Name</string>
+    <string name="placeholder_category">Category</string>
+    <string name="label_barcode" formatted="true">Barcode: %1$s</string>
+    <string name="label_barcode_unknown">Barcode: unknown</string>
+    <string name="header_instructions">Sorting instructions</string>
+    <string name="label_no_instructions">No specific instructions.</string>
+    <string name="btn_scan_again">Scan Again</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_add_history">Add to History</string>
+    <string name="msg_added_to_history">Saved to history.</string>
+    <string name="share_chooser_title">Share result via…</string>
+    <string name="share_template">"%1$s" goes in: %3$s %2$s (via RecyclScan)</string>
+    <string name="title_history">Scan History</string>
+    <string name="history_empty">No scans yet.\nStart scanning to build your history.</string>
+    <string name="filter_all">All categories</string>
+    <string name="filter_recyclable">Recyclable</string>
+    <string name="filter_compost">Compost</string>
+    <string name="filter_general_waste">General Waste</string>
+    <string name="filter_hazardous">Hazardous</string>
 </resources>
