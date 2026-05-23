@@ -128,11 +128,18 @@ public class HistoryActivity extends AppCompatActivity {
         }).start();
     }
 
+
+    // rebuilds a product from the history and opens ResultActivity to display it
     private void openResult(HistoryItem item) {
-//        Intent intent = new Intent(this, ResultActivity.class);
-//        intent.putExtra("extra_barcode",      item.getBarcode());
-//        intent.putExtra("extra_product_name", item.getProductName());
-//        intent.putExtra("extra_category",     item.getCategory().name());
-//        startActivity(intent);
+        Product product = new Product(
+                item.getProductName(),
+                item.getBarcode(),
+                WasteCategory.valueOf(item.getCategory().name()),
+                null
+        );
+        // assigning to a product obejct and it's details for each product scan, creation of intent
+        Intent intent = new Intent(this, ResultActivity.class);
+        intent.putExtra(ResultActivity.EXTRA_PRODUCT, product);
+        startActivity(intent);
     }
 }
