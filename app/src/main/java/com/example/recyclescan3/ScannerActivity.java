@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -115,6 +116,11 @@ public class ScannerActivity extends AppCompatActivity {
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults results) {
                         statusText.setText("Captured — ready to classify");
                         Log.d(TAG, "Saved: " + outputFile.getAbsolutePath());
+
+                        Product product = new Product("Unknown Product", null, WasteCategory.RECYCLABLE, null);
+                        Intent intent = new Intent(ScannerActivity.this, ResultActivity.class);
+                        intent.putExtra(ResultActivity.EXTRA_PRODUCT, product);
+                        startActivity(intent);
                     }
 
                     @Override
