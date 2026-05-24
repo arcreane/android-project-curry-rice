@@ -33,6 +33,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    aaptOptions {
+        noCompress += "tflite"
+    }
 }
 
 dependencies {
@@ -45,6 +48,9 @@ dependencies {
     implementation(libs.camera.camera2)
     implementation(libs.camera.lifecycle)
     implementation(libs.camera.view)
+    // TFLite
+    implementation(libs.tflite)
+    implementation(libs.tflite.support)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

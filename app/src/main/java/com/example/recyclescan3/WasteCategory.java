@@ -7,10 +7,10 @@ package com.example.recyclescan3;
  */
 public enum WasteCategory {
 
-    RECYCLABLE("Recyclable",      "♻️"),
-    COMPOST   ("Compost",         "🌱"),
-    GENERAL   ("General Waste",   "🗑️"),
-    HAZARDOUS ("Hazardous Waste", "⚠️");
+    RECYCLABLE   ("Recyclable",      "♻️"),
+    COMPOST      ("Compost",         "🌱"),
+    GENERAL_WASTE("General Waste",   "🗑️"),
+    HAZARDOUS    ("Hazardous Waste", "⚠️");
 
     private final String label;
     private final String emoji;
