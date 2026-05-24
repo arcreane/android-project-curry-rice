@@ -1,63 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardElevation="2dp"
-    app:cardCornerRadius="8dp">
+    android:orientation="horizontal"
+    android:background="?attr/selectableItemBackground"
+    android:paddingVertical="10dp"
+    android:paddingEnd="16dp">
+
+    <View
+        android:id="@+id/view_category_badge"
+        android:layout_width="6dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="12dp"
+        android:minHeight="48dp" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:justificationMode="inter_word">
 
-        <View
-            android:id="@+id/view_category_badge"
-            android:layout_width="6dp"
-            android:layout_height="match_parent" />
-
-        <LinearLayout
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/tv_product_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="12dp">
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="Product name" />
 
-            <TextView
-                android:id="@+id/tv_product_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="?attr/colorOnSurface" />
-
-            <TextView
-                android:id="@+id/tv_barcode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="?attr/colorOnSurfaceVariant" />
-
-            <TextView
-                android:id="@+id/tv_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:layout_marginTop="4dp"
-                android:textColor="?attr/colorOnSurface" />
-
-            <TextView
-                android:id="@+id/tv_scanned_at"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="?attr/colorOnSurfaceVariant" />
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_barcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="1234567890" />
 
     </LinearLayout>
 
-</com.google.android.material.card.MaterialCardView>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="end">
+
+        <TextView
+            android:id="@+id/tv_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:text="Recyclable" />
+
+        <TextView
+            android:id="@+id/tv_scanned_at"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="11sp"
+            android:text="01 Jan 2025, 12:00" />
+
+    </LinearLayout>
+
+</LinearLayout>
