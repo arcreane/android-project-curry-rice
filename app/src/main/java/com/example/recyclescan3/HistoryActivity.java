@@ -105,7 +105,7 @@ public class HistoryActivity extends AppCompatActivity {
                     selection,
                     selectionArgs,
                     HistoryScanContract.COL_SCANNED_AT + " DESC"
-            ); // History Activity crashes because content provider is not implemented yet
+            );
 
             List<HistoryItem> items = new ArrayList<>();
             if (cursor != null) {
@@ -136,7 +136,7 @@ public class HistoryActivity extends AppCompatActivity {
         try {
             wc = WasteCategory.valueOf(item.getCategoryName());
         } catch (IllegalArgumentException e) {
-            wc = WasteCategory.GENERAL;
+            wc = WasteCategory.GENERAL_WASTE;
         }
         Product product = new Product(
                 item.getProductName(),
@@ -146,6 +146,7 @@ public class HistoryActivity extends AppCompatActivity {
         );
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra(ResultActivity.EXTRA_PRODUCT, product);
+        intent.putExtra(ResultActivity.EXTRA_FROM_HISTORY, true);
         startActivity(intent);
     }
 }

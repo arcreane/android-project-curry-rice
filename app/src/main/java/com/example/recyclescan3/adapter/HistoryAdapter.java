@@ -76,7 +76,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         try {
             wc = WasteCategory.valueOf(categoryName);
         } catch (IllegalArgumentException e) {
-            wc = WasteCategory.GENERAL;
+            wc = WasteCategory.GENERAL_WASTE;
         }
         switch (wc) {
             case RECYCLABLE: return context.getColor(R.color.category_recyclable);
