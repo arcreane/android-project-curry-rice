@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/action_filter_all"
-        android:title="@string/filter_all"
-        android:showAsAction="never" />
+  <item
+    android:id="@+id/action_filter_all"
+    android:title="@string/filter_all"
+    app:showAsAction="never" />
 
-    <item
-        android:id="@+id/action_filter_recyclable"
-        android:title="@string/filter_recyclable"
-        android:showAsAction="never" />
+  <item
+    android:id="@+id/action_filter_recyclable"
+    android:title="@string/filter_recyclable"
+    app:showAsAction="never" />
 
-    <item
-        android:id="@+id/action_filter_compost"
-        android:title="@string/filter_compost"
-        android:showAsAction="never" />
+  <item
+    android:id="@+id/action_filter_compost"
+    android:title="@string/filter_compost"
+    app:showAsAction="never" />
 
-    <item
-        android:id="@+id/action_filter_general"
-        android:title="@string/filter_general_waste"
-        android:showAsAction="never" />
+  <item
+    android:id="@+id/action_filter_general"
+    android:title="@string/filter_general_waste"
+    app:showAsAction="never" />
 
-    <item
-        android:id="@+id/action_filter_hazardous"
-        android:title="@string/filter_hazardous"
-        android:showAsAction="never" />
+  <item
+    android:id="@+id/action_filter_hazardous"
+    android:title="@string/filter_hazardous"
+    app:showAsAction="never" />
 
 </menu>
