@@ -50,6 +50,11 @@
         android:exported="false"
         android:parentActivityName=".MainActivity" />
 
+        <provider
+            android:name=".data.HistoryScanProvider"
+            android:authorities="com.example.recyclescan3.provider"
+            android:exported="false" />
+
     </application>
 
 </manifest>
