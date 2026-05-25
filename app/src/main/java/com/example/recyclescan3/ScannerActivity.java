@@ -147,7 +147,7 @@ public class ScannerActivity extends AppCompatActivity {
                         }
 
                         TFLiteClassifier.Result result = classifier.classify(raw);
-                        String name         = labelToDisplayName(result.label);
+                        String name = labelToDisplayName(result.label);
                         String instructions = String.format(Locale.US, "Confidence: %.0f%%", result.confidence * 100);
 
                         Product product = new Product(name, null, result.category, instructions);
