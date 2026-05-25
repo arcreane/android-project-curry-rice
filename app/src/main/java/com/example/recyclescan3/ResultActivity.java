@@ -71,6 +71,10 @@ public class ResultActivity extends AppCompatActivity {
         }
 
         Button btnScanAgain = findViewById(R.id.btn_scan_again);
+
+        boolean fromHistory = getIntent().getBooleanExtra(EXTRA_FROM_HISTORY, false);
+        btnScanAgain.setText(fromHistory ? "Back to History" : "Scan Again");
+
         btnScanAgain.setOnClickListener(v -> finish());
     }
 
