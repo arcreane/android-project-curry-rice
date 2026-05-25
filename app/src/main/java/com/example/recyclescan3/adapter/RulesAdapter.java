@@ -34,7 +34,7 @@ public class RulesAdapter extends RecyclerView.Adapter<RulesAdapter.ViewHolder> 
         BinRule rule = rules.get(position);
         holder.tvProductType.setText(rule.productType);
         holder.tvBinLabel.setText(rule.binLabel);
-        holder.tvCategory.setText(rule.category.displayName);
+        holder.tvCategory.setText(rule.category.getLabel());
     }
 
     @Override
