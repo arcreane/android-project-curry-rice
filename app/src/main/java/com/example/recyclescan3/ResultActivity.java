@@ -1,12 +1,16 @@
 package com.example.recyclescan3;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.recyclescan3.data.HistoryScanContract;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -127,9 +131,7 @@ public class ResultActivity extends AppCompatActivity {
             return true;
 
         } else if (id == R.id.action_add_history) {
-            // Stub: HistoryActivity will read from the ContentProvider (R8).
-            // For now just confirm with a toast.
-            Toast.makeText(this, R.string.msg_added_to_history, Toast.LENGTH_SHORT).show();
+            addToHistory();
             return true;
         }
 
@@ -137,6 +139,18 @@ public class ResultActivity extends AppCompatActivity {
     }
 
     // ── Helpers ──────────────────────────────────────────────────────────────
+
+    private void addToHistory() {
+        ContentValues values = new ContentValues();
+        values.put(HistoryScanContract.COL_PRODUCT_NAME, product.getName());
+        values.put(HistoryScanContract.COL_BARCODE,      product.getBarcode());
+        values.put(HistoryScanContract.COL_CATEGORY,     product.getCategory().name());
+        values.put(HistoryScanContract.COL_SCANNED_AT,   System.currentTimeMillis());
+
+        Uri inserted = getContentResolver().insert(HistoryScanContract.CONTENT_URI, values);
+        int msgRes = inserted != null ? R.string.msg_added_to_history : R.string.msg_history_error;
+        Toast.makeText(this, msgRes, Toast.LENGTH_SHORT).show();
+    }
 
     /**
      * Fires an implicit {@link Intent#ACTION_SEND} so the user can share the
