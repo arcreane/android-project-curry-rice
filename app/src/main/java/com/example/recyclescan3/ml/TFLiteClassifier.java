@@ -33,13 +33,16 @@ public class TFLiteClassifier implements Closeable {
         }
     }
 
+
     private final Interpreter  interpreter;
     private final List<String> labels;
+
 
     public TFLiteClassifier(Context context) throws IOException {
         interpreter = new Interpreter(loadModelFile(context));
         labels      = loadLabels(context);
     }
+
 
     public Result classify(Bitmap bitmap) {
         Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
@@ -68,10 +71,12 @@ public class TFLiteClassifier implements Closeable {
         return new Result(label, score, mapLabel(label));
     }
 
+
     @Override
     public void close() {
         interpreter.close();
     }
+
 
     private MappedByteBuffer loadModelFile(Context ctx) throws IOException {
         AssetFileDescriptor fd = ctx.getAssets().openFd("model_unquant.tflite");
@@ -79,6 +84,7 @@ public class TFLiteClassifier implements Closeable {
         FileChannel ch = fis.getChannel();
         return ch.map(FileChannel.MapMode.READ_ONLY, fd.getStartOffset(), fd.getDeclaredLength());
     }
+
 
     private List<String> loadLabels(Context ctx) throws IOException {
         List<String> list = new ArrayList<>();
@@ -93,6 +99,7 @@ public class TFLiteClassifier implements Closeable {
         br.close();
         return list;
     }
+
 
     private static WasteCategory mapLabel(String label) {
         switch (label) {
