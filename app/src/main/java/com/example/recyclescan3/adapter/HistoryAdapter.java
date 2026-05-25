@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.recyclescan3.R;
-import com.example.recyclescan3.model.Category;
+import com.example.recyclescan3.WasteCategory;
 import com.example.recyclescan3.model.HistoryItem;
 
 import java.text.SimpleDateFormat;
@@ -53,10 +53,15 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         String name = item.getProductName();
         holder.tvProductName.setText((name != null && !name.isEmpty()) ? name : item.getBarcode());
         holder.tvBarcode.setText(item.getBarcode());
-        holder.tvCategory.setText(item.getCategory().displayName);
+        String categoryName = item.getCategoryName();
+        try {
+            holder.tvCategory.setText(WasteCategory.valueOf(categoryName).getLabel());
+        } catch (IllegalArgumentException e) {
+            holder.tvCategory.setText(categoryName);
+        }
         holder.tvScannedAt.setText(new SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
                 .format(new Date(item.getScannedAt())));
-        holder.viewCategoryBadge.setBackgroundColor(colorForCategory(item.getCategory()));
+        holder.viewCategoryBadge.setBackgroundColor(colorForCategory(categoryName));
 
         holder.itemView.setOnClickListener(v -> listener.onItemClick(item));
     }
@@ -66,13 +71,18 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         return items.size();
     }
 
-    private int colorForCategory(Category category) {
-        switch (category) {
-            case RECYCLABLE:    return context.getColor(R.color.category_recyclable);
-            case COMPOST:       return context.getColor(R.color.category_compost);
-            case GENERAL_WASTE: return context.getColor(R.color.category_general);
-            case HAZARDOUS:     return context.getColor(R.color.category_hazardous);
-            default:            return context.getColor(R.color.category_general);
+    private int colorForCategory(String categoryName) {
+        WasteCategory wc;
+        try {
+            wc = WasteCategory.valueOf(categoryName);
+        } catch (IllegalArgumentException e) {
+            wc = WasteCategory.GENERAL;
+        }
+        switch (wc) {
+            case RECYCLABLE: return context.getColor(R.color.category_recyclable);
+            case COMPOST:    return context.getColor(R.color.category_compost);
+            case HAZARDOUS:  return context.getColor(R.color.category_hazardous);
+            default:         return context.getColor(R.color.category_general);
         }
     }
 
