@@ -1,0 +1,5 @@
+0 poubelle_jaune
+1 poubelle_verre
+2 ordures_menageres
+3 decheterie_collecte_speciale
+4 compost_biodechets

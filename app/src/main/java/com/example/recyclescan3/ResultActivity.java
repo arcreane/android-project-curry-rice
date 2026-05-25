@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.recyclescan3.data.HistoryScanContract;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -131,6 +133,7 @@ public class ResultActivity extends AppCompatActivity {
 
         } else if (id == R.id.action_add_history) {
             saveToHistory();
+            addToHistory();
             return true;
         }
 
@@ -139,20 +142,20 @@ public class ResultActivity extends AppCompatActivity {
 
     // ── Helpers ──────────────────────────────────────────────────────────────
 
-    private void saveToHistory() {
-        ContentValues values = new ContentValues();
-        values.put(HistoryScanContract.COL_PRODUCT_NAME, product.getName());
-        values.put(HistoryScanContract.COL_BARCODE,      product.getBarcode());
-        values.put(HistoryScanContract.COL_CATEGORY,     product.getCategory().name());
-        // COL_SCANNED_AT is auto-stamped by the provider when absent.
+private void saveToHistory() {
+    ContentValues values = new ContentValues();
+    values.put(HistoryScanContract.COL_PRODUCT_NAME, product.getName());
+    values.put(HistoryScanContract.COL_BARCODE,      product.getBarcode());
+    values.put(HistoryScanContract.COL_CATEGORY,     product.getCategory().name());
+    // COL_SCANNED_AT is auto-stamped by the provider when absent.
 
-        Uri result = getContentResolver().insert(HistoryScanContract.CONTENT_URI, values);
-        if (result != null) {
-            Toast.makeText(this, R.string.msg_added_to_history, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, R.string.msg_history_error, Toast.LENGTH_SHORT).show();
-        }
+    Uri result = getContentResolver().insert(HistoryScanContract.CONTENT_URI, values);
+    if (result != null) {
+        Toast.makeText(this, R.string.msg_added_to_history, Toast.LENGTH_SHORT).show();
+    } else {
+        Toast.makeText(this, R.string.msg_history_error, Toast.LENGTH_SHORT).show();
     }
+}
 
     /**
      * Fires an implicit {@link Intent#ACTION_SEND} so the user can share the
