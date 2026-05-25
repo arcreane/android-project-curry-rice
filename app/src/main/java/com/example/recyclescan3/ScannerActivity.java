@@ -130,8 +130,18 @@ public class ScannerActivity extends AppCompatActivity {
                         Log.d(TAG, "Saved: " + outputFile.getAbsolutePath());
                         statusText.setText("Classifying...");
 
+                        if (classifier == null) {
+                            try {
+                                classifier = new TFLiteClassifier(ScannerActivity.this);
+                            } catch (IOException e) {
+                                Log.e(TAG, "Failed to reload classifier", e);
+                                statusText.setText("Classification failed");
+                                return;
+                            }
+                        }
+
                         Bitmap raw = BitmapFactory.decodeFile(outputFile.getAbsolutePath());
-                        if (raw == null || classifier == null) {
+                        if (raw == null) {
                             statusText.setText("Classification failed");
                             return;
                         }
@@ -143,6 +153,7 @@ public class ScannerActivity extends AppCompatActivity {
                         Product product = new Product(name, null, result.category, instructions);
                         Intent intent = new Intent(ScannerActivity.this, ResultActivity.class);
                         intent.putExtra(ResultActivity.EXTRA_PRODUCT, product);
+
                         startActivity(intent);
                     }
 
