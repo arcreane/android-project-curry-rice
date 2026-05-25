@@ -15,8 +15,10 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 import com.example.recyclescan3.adapter.HistoryAdapter;
 import com.example.recyclescan3.data.HistoryScanContract;
-import com.example.recyclescan3.model.Category;
 import com.example.recyclescan3.model.HistoryItem;
+import com.example.recyclescan3.Product;
+import com.example.recyclescan3.ResultActivity;
+import com.example.recyclescan3.WasteCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,7 +114,7 @@ public class HistoryActivity extends AppCompatActivity {
                             cursor.getLong(cursor.getColumnIndexOrThrow(HistoryScanContract.COL_ID)),
                             cursor.getString(cursor.getColumnIndexOrThrow(HistoryScanContract.COL_BARCODE)),
                             cursor.getString(cursor.getColumnIndexOrThrow(HistoryScanContract.COL_PRODUCT_NAME)),
-                            Category.valueOf(cursor.getString(cursor.getColumnIndexOrThrow(HistoryScanContract.COL_CATEGORY))),
+                            cursor.getString(cursor.getColumnIndexOrThrow(HistoryScanContract.COL_CATEGORY)),
                             cursor.getLong(cursor.getColumnIndexOrThrow(HistoryScanContract.COL_SCANNED_AT))
                     ));
                 }
@@ -129,15 +131,19 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
 
-    // rebuilds a product from the history and opens ResultActivity to display it
     private void openResult(HistoryItem item) {
+        WasteCategory wc;
+        try {
+            wc = WasteCategory.valueOf(item.getCategoryName());
+        } catch (IllegalArgumentException e) {
+            wc = WasteCategory.GENERAL;
+        }
         Product product = new Product(
                 item.getProductName(),
                 item.getBarcode(),
-                WasteCategory.valueOf(item.getCategory().name()),
+                wc,
                 null
         );
-        // assigning to a product obejct and it's details for each product scan, creation of intent
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra(ResultActivity.EXTRA_PRODUCT, product);
         startActivity(intent);
