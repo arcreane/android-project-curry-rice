@@ -6,4 +6,5 @@
     <color name="category_compost">#FF8BC34A</color>
     <color name="category_general">#FF9E9E9E</color>
     <color name="category_hazardous">#FFF44336</color>
+    <color name="brand_blue">#1565C0</color>
 </resources>

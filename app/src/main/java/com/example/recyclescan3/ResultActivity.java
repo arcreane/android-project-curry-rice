@@ -7,15 +7,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.LinearLayout;
+
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ScrollView;
 
 import com.example.recyclescan3.data.HistoryScanContract;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.recyclescan3.model.Category;
+import com.example.recyclescan3.WasteCategory;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -64,8 +65,8 @@ public class ResultActivity extends AppCompatActivity {
         TextView tvCategoryLabel = findViewById(R.id.tv_category_label);
         tvCategoryEmoji.setText(product.getCategory().getEmoji());
         tvCategoryLabel.setText(product.getCategory().getLabel());
-        LinearLayout categoryCard = findViewById(R.id.layout_category_card);
-        categoryCard.setBackgroundColor(getCategoryColor(product.getCategory()));
+        ScrollView scrollView = findViewById(R.id.scroll_result);
+        scrollView.setBackgroundColor(getCategoryColor(product.getCategory()));
 
 
         TextView tvInstructions = findViewById(R.id.tv_instructions);
@@ -144,7 +145,7 @@ public class ResultActivity extends AppCompatActivity {
                 return getResources().getColor(R.color.category_recyclable, getTheme());
             case COMPOST:
                 return getResources().getColor(R.color.category_compost, getTheme());
-            case GENERAL:
+            case GENERAL_WASTE:
                 return getResources().getColor(R.color.category_general, getTheme());
             case HAZARDOUS:
                 return getResources().getColor(R.color.category_hazardous, getTheme());
