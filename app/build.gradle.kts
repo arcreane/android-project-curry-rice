@@ -10,6 +10,12 @@ android {
         }
     }
 
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+
     defaultConfig {
         applicationId = "com.example.recyclescan3"
         minSdk = 34
@@ -38,6 +44,15 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        force("org.tensorflow:tensorflow-lite:2.16.1")
+        force("org.tensorflow:tensorflow-lite-api:2.16.1")
+        force("org.tensorflow:tensorflow-lite-support:0.4.4")
+        force("org.tensorflow:tensorflow-lite-support-api:0.4.4")
+    }
+}
+
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -49,8 +64,12 @@ dependencies {
     implementation(libs.camera.lifecycle)
     implementation(libs.camera.view)
     // TFLite
-    implementation(libs.tflite)
-    implementation(libs.tflite.support)
+    implementation("org.tensorflow:tensorflow-lite:2.16.1") {
+        exclude(group = "org.tensorflow", module = "tensorflow-lite-api")
+    }
+    implementation("org.tensorflow:tensorflow-lite-support:0.4.4") {
+        exclude(group = "org.tensorflow", module = "tensorflow-lite-support-api")
+    }
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
